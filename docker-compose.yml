@@ -1,0 +1,31 @@
+version: '3'
+services:
+    go-app:
+        image: golang:alpine
+        ports:
+            - 80:80
+        volumes:
+            - .:/app
+            - ./pkg-mod:/go/pkg/mod
+        networks:
+            - default
+        command: sh -c 'cd /app;go mod tidy;go get .;go install;go-articles'
+
+    db:
+        image: 'mariadb:latest'
+        ports:
+            - 3306:3306
+        volumes:
+            - ./mysql:/var/lib/mysql
+        networks:
+            - default
+        environment:
+            MYSQL_ROOT_PASSWORD: 'db-root-p'
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: 'go_app_tutorial'
+            MYSQL_USER: 'goapptutorial'
+            MYSQL_PASSWORD: 'goapptutorial'
+
+networks:
+    default:
+        driver: bridge
