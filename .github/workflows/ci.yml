@@ -1,7 +1,7 @@
 name: continuous-integration
 on: [push]
 jobs:
-  check_application:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -12,3 +12,8 @@ jobs:
         run: go build -v ./...
       - name: test
         run: go test ./... -v -cover
+      - name: lint
+        uses: golangci/golangci-lint-action@v4
+        with:
+          version: v1.54
+  
