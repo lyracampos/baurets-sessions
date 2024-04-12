@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	r := mux.NewRouter()
+	r := mux.NewRouter(
 
 	r.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "pong v1.0.1")
