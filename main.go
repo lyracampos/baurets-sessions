@@ -24,3 +24,12 @@ func main() {
 		log.Println(err)
 	}
 }
+
+func sum(val1, val2 int) int {
+	total := val1 + val2
+	if total <= 0 {
+		return 0
+	}
+
+	return total
+}
