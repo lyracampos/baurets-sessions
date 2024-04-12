@@ -8,3 +8,6 @@ test:
 
 lint:
 	$(GOLANGCI_LINT) run --fix
+
+
+asdasds
